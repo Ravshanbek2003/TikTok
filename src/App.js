@@ -9,9 +9,10 @@ const videoUrls = [
   {
     url: require("./videos/video1.mp4"),
     profilePic: "https://picsum.photos/200",
-    username: "csjackie",
-    description: "Lol nvm #compsci #chatgpt #ai #openai #techtok",
-    song: "Original sound - Famed Flames",
+    username: "deler_04",
+    description:
+      "vine n1 tik tok videolar #tiktok #trend #reels #qizlar #instagram #narminjan #mira #pubg #pubgm",
+    song: "",
     likes: 430,
     comments: 13,
     saves: 23,
@@ -20,10 +21,9 @@ const videoUrls = [
   {
     url: require("./videos/video2.mp4"),
     profilePic: "https://picsum.photos/200",
-    username: "dailydotdev",
-    description:
-      "Every developer brain @francesco.ciulla #developerjokes #programming #programminghumor #programmingmemes",
-    song: "tarawarolin wants you to know this isnt my sound - Chaplain J Rob",
+    username: "pompaloq",
+    description: " ",
+    song: " ",
     likes: "13.4K",
     comments: 3121,
     saves: 254,
@@ -32,10 +32,10 @@ const videoUrls = [
   {
     url: require("./videos/video3.mp4"),
     profilePic: "https://picsum.photos/200",
-    username: "wojciechtrefon",
+    username: "sheyxmuz",
     description:
-      "#programming #softwareengineer #vscode #programmerhumor #programmingmemes",
-    song: "help so many people are using my sound - Ezra",
+      "tik tok 2023 trend music  obuna bulamiz #instagram #tiktok #qizlar #trend #reels #uzmir #mira",
+    song: " ",
     likes: 5438,
     comments: 238,
     saves: 12,
@@ -52,6 +52,40 @@ const videoUrls = [
     comments: 230,
     saves: 1037,
     shares: 967,
+  },
+  {
+    url: require("./videos/video5.mp4"),
+    profilePic: "https://picsum.photos/200",
+    username: "azik009",
+    description: "Lol nvm #compsci #chatgpt #ai #openai #techtok",
+    song: " ",
+    likes: 4300,
+    comments: 123,
+    saves: 23,
+    shares: 10,
+  },
+  {
+    url: require("./videos/video6.mp4"),
+    profilePic: "https://picsum.photos/200",
+    username: "alone",
+    description: "ЧИНГИЗ  ХАСБИК ТИК ТОК #shorts #chingiz #чингиз",
+    song: " ",
+    likes: 400,
+    comments: 23,
+    saves: 3,
+    shares: 10,
+  },
+  {
+    url: require("./videos/video7.mp4"),
+    profilePic: "https://picsum.photos/200",
+    username: "pandacha09",
+    description:
+      "узбекча тренд #uzbek #uzb #trend #rek #shorts #shortvideo #uzbekistan #tiktokuz",
+    song: " ",
+    likes: 300,
+    comments: 3,
+    saves: 3,
+    shares: 100,
   },
 ];
 
