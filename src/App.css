@@ -41,7 +41,10 @@ html {
   align-items: center;
   z-index: 1;
 }
-
+.pos{
+  position: sticky;
+  bottom: 0;
+}
 .top-navbar h2 {
   font-size: 14px;
   font-weight: 500;
@@ -92,7 +95,7 @@ html {
 
 .bottom-navbar .icon {
   font-size: 18px;
-  color: #d4d3d3;
+  color: #bebbbb;
 }
 
 .bottom-navbar .plus {
