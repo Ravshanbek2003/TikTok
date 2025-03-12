@@ -6,7 +6,7 @@ import TopNavbar from "./components/TopNavbar";
 // This array holds information about different videos
 const videoUrls = [
   {
-    url: require("./videos/video1.mp4"),
+    url: "https://ia902907.us.archive.org/11/items/video1_202503/video1.mp4",
     profilePic: "https://picsum.photos/200",
     username: "deler_04",
     description:
@@ -18,7 +18,7 @@ const videoUrls = [
     shares: 1,
   },
   {
-    url: require("./videos/video2.mp4"),
+    url: "https://ia802907.us.archive.org/9/items/video2_202503/video2.mp4",
     profilePic: "https://picsum.photos/200",
     username: "pompaloq",
     description: " ",
@@ -29,7 +29,7 @@ const videoUrls = [
     shares: 420,
   },
   {
-    url: require("./videos/video3.mp4"),
+    url: "https://ia601303.us.archive.org/6/items/video3_202503/video3.mp4",
     profilePic: "https://picsum.photos/200",
     username: "sheyxmuz",
     description:
@@ -41,7 +41,19 @@ const videoUrls = [
     shares: 117,
   },
   {
-    url: require("./videos/video4.mp4"),
+    url: "https://ia903205.us.archive.org/20/items/video4_202503/video4.mp4",
+    profilePic: "https://picsum.photos/200",
+    username: "pandacha09",
+    description:
+      "узбекча тренд #uzbek #uzb #trend #rek #shorts #shortvideo #uzbekistan #tiktokuz",
+    song: " ",
+    likes: 300,
+    comments: 3,
+    saves: 3,
+    shares: 100,
+  },
+  {
+    url: "https://ia801807.us.archive.org/24/items/video5_202503/video5.mp4",
     profilePic: "https://picsum.photos/200",
     username: "faruktutkus",
     description:
@@ -53,7 +65,7 @@ const videoUrls = [
     shares: 967,
   },
   {
-    url: require("./videos/video5.mp4"),
+    url: "https://ia601303.us.archive.org/18/items/video7_202503/video7.mp4",
     profilePic: "https://picsum.photos/200",
     username: "azik009",
     description: "Lol nvm #compsci #chatgpt #ai #openai #techtok",
@@ -64,7 +76,7 @@ const videoUrls = [
     shares: 10,
   },
   {
-    url: require("./videos/video6.mp4"),
+    url: "https://ia902906.us.archive.org/7/items/video6_202503/video6.mp4",
     profilePic: "https://picsum.photos/200",
     username: "alone",
     description: "ЧИНГИЗ  ХАСБИК ТИК ТОК #shorts #chingiz #чингиз",
@@ -73,18 +85,6 @@ const videoUrls = [
     comments: 23,
     saves: 3,
     shares: 10,
-  },
-  {
-    url: require("./videos/video7.mp4"),
-    profilePic: "https://picsum.photos/200",
-    username: "pandacha09",
-    description:
-      "узбекча тренд #uzbek #uzb #trend #rek #shorts #shortvideo #uzbekistan #tiktokuz",
-    song: " ",
-    likes: 300,
-    comments: 3,
-    saves: 3,
-    shares: 100,
   },
 ];
 
@@ -145,6 +145,7 @@ function Home() {
         {videos.map((video, index) => (
           <VideoCard
             key={index}
+            index={index}
             username={video.username}
             description={video.description}
             song={video.song}

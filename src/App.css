@@ -41,7 +41,7 @@ html {
   align-items: center;
   z-index: 1;
 }
-.pos{
+.pos {
   position: sticky;
   bottom: 0;
 }

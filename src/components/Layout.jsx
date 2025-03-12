@@ -13,7 +13,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 function Layout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
 
   return (
     <div>

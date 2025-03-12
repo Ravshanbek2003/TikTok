@@ -20,49 +20,33 @@ const VideoCard = (props) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (autoplay && videoRef.current) {
-      const video = videoRef.current;
-
-      // Agar video allaqachon o‘ynayotgan bo‘lsa, qayta play() chaqirmaslik
-      if (!video.paused) return;
-
-      const playPromise = video.play();
-
-      if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          console.log("Autoplay failed: ", error);
-        });
-      }
+    if (autoplay) {
+      // videoRef.current.play();
     }
   }, [autoplay]);
 
   const onVideoPress = () => {
-    if (!videoRef.current) return;
-
     if (videoRef.current.paused) {
-      videoRef.current.play().catch((error) => {
-        console.log("Play error: ", error);
-      });
+      // videoRef.current.play();
     } else {
       videoRef.current.pause();
     }
   };
-
   return (
     <div className="video">
-      {/* The video element */}
       <video
-        className="player"
         onClick={onVideoPress}
         ref={(ref) => {
           videoRef.current = ref;
           setVideoRef(ref);
         }}
+        className="player"
         loop
-        muted
-        playsInline
-        src={url}
-      ></video>
+        controls
+      >
+        <source src={url} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="bottom-controls">
         <div className="footer-left">
           <FooterLeft
