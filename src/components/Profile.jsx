@@ -1,6 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+  const Image = ({ src, alt, style }) => (
+    <img src={src} alt={alt} style={style} />
+  );
+  const navigate = useNavigate();
+  const fetchMe = async (token) => {
+    try {
+      const response = await fetch(
+        "https://bakery.the-watcher.uz/user/profile",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`, // Agar server token bilan autentifikatsiyani talab qilsa
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData?.message || `HTTP xatolik! Status: ${response.status}`
+        );
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      return data; // MeResponse tipidagi ma'lumot
+    } catch (error) {
+      console.error("Me so'rovida xatolik:", error.message);
+      throw error;
+    }
+  };
+  const accessToken = localStorage.getItem("token"); // Tokenni saqlash usulingizga moslang
+  const [data, setData] = useState({});
+  useEffect(() => {
+    if (accessToken) {
+      fetchMe(accessToken).then((responseData) => {
+        console.log(responseData);
+
+        setData(responseData);
+      });
+    }
+  }, []);
+  console.log(data);
+
+  const [imagePreview, setImagePreview] = useState(null);
+  const inputRef = null;
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        localStorage.setItem("savedFile", reader.result);
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+  useEffect(() => {
+    const savedFile = localStorage.getItem("savedFile");
+    if (savedFile) {
+      setImagePreview(savedFile);
+      fetch(savedFile)
+        .then((res) => res.blob())
+        .then((blob) => {
+          const file = new File([blob], "saved-file", { type: blob.type });
+
+          const dataTransfer = new DataTransfer();
+          dataTransfer.items.add(file);
+          if (inputRef?.current) {
+            inputRef.current.files = dataTransfer.files;
+          }
+        });
+    }
+  }, []);
   return (
     <div style={{ backgroundColor: "#161616", color: "white" }}>
       <div
@@ -23,7 +100,9 @@ export default function Profile() {
             borderBottom: "1px solid #ddd",
           }}
         >
-          <h3 style={{ margin: 0, fontSize: "16px" }}>Allanazarov Daler</h3>
+          <h3 style={{ margin: 0, fontSize: "16px" }}>
+            {data?.fullName || "user name"}
+          </h3>
           <div>
             <span
               style={{
@@ -42,40 +121,42 @@ export default function Profile() {
         <div style={{ marginTop: "20px" }}>
           <div
             style={{
-              width: "80px",
-              height: "80px",
-              backgroundColor: "#ddd",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              border: "1px solid black",
               margin: "0 auto",
-              position: "relative",
+              width: "60px",
+              height: "60px",
+              objectFit: "cover",
+              borderRadius: "50%",
+              backgroundColor: "red",
             }}
           >
-            <span style={{ fontSize: "24px", color: "#555" }}>D</span>
-            <div
-              style={{
-                width: "20px",
-                height: "20px",
-                backgroundColor: "#00aaff",
-                borderRadius: "50%",
-                position: "absolute",
-                bottom: "0",
-                right: "0",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-                fontSize: "14px",
-                fontWeight: "bold",
-              }}
-            >
-              +
-            </div>
+            <label htmlFor="img" style={{ cursor: "pointer" }}>
+              <Image
+                src={imagePreview || ""}
+                alt="profile image"
+                style={{
+                  border: "1px solid black",
+                  margin: "0 auto",
+                  width: "60px",
+                  height: "60px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                  backgroundColor: "red",
+                }}
+              />
+              <input
+                id="img"
+                type="file"
+                ref={inputRef}
+                onChange={handleFileChange}
+                accept="image/*"
+                className="hidden"
+                style={{ display: "none" }}
+              />
+            </label>
           </div>
           <p style={{ fontSize: "14px", margin: "10px 0", color: "#555" }}>
-            allanazarovdaler87@mail.com
+            {data?.username || "user email"}
           </p>
 
           <div
@@ -161,6 +242,10 @@ export default function Profile() {
             Retro video ulashing
           </h3>
           <button
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate("/login");
+            }}
             style={{
               padding: "10px 20px",
               fontSize: "14px",
@@ -172,7 +257,7 @@ export default function Profile() {
               marginTop: "10px",
             }}
           >
-            Yuklash
+            Log out
           </button>
         </div>
       </div>

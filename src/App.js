@@ -6,6 +6,7 @@ import Profile from "./components/Profile";
 import Friends from "./components/Friends";
 import Enter from "./components/Enter";
 import Create from "./components/Create";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" index element={<Home />} />
 
+          <Route path="/login" index element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/enter" element={<Enter />} />
